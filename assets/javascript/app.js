@@ -9,6 +9,29 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+var Result = function(name, distance, info, rating, url){
+    this.name = name;
+    this.distance = distance;
+    this.info = info;
+    this.rating = rating;
+    this.url = url;
+};
+
+var appUI = {
+    nthResultDivSelector: function(i) {
+        return "#results-div div:nth-child(" + (i + 1) + ")";
+    },
+
+    //i is index from 0 (left) to 2 (right)
+    updateResult: function(i, result) {
+        $(this.nthResultDivSelector(i)+" .name").text(result.name);
+        $(this.nthResultDivSelector(i)+" .distance").text(result.distance);
+        $(this.nthResultDivSelector(i)+" .info").text(result.info);
+        $(this.nthResultDivSelector(i)+" .rating").text(result.rating);
+    }
+
+};
+
 $(document.body).ready(function(){
 
 });
