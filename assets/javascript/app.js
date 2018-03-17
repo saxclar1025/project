@@ -32,24 +32,41 @@ var appUI = {
 
 };
 
-var appSearcher {
+var yelpSearcher {
     //Look here for Yelp categories
     //https://www.yelp.com/developers/documentation/v3/all_category_list
+    category: null,
+    zip: null,
+    categories: [ "(active, All)",
+                  "(food, All)",
+                  "(tours, All)",
+                  "(bars, All)",
+                  "(karaoke, All)",
+                  "(restaurants, All)",
+                  "(comedyclubs, US)",
+                  "(danceclubs, All)"
+    ],
 
-    // var settings = {
-    //   "async": true,
-    //   "crossDomain": true,
-    //   "url": "https://api.yelp.com/v3/businesses/search?categories=(active%2C%20All)&location=33331",
-    //   "method": "GET",
-    //   "headers": {
-    //     "content-type": "multipart/form-data",
-    //     "authorization": "Bearer Mh1ZWFGBqHPe9M8fVJD20Nw2CoIIQLe_M7bnbMZ3nBnTa92KHKZjEm1eaByWnCWsuQYR4ZSo0jG11YctVk1q6mhAylw_PiHfhjzdytMULhdPn4zcz_hsdUqwZBGrWnYx"
-    //   }
-    // }
+    setCategory: function(categoryID) {
+        this.category = categories[categoryID];
+    },
 
-    // $.ajax(settings).done(function (response) {
-    //   console.log(response);
-    // });
+    search: function() {
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.yelp.com/v3/businesses/search?categories=" + this.category + "&location=" + this.zip,
+          "method": "GET",
+          "headers": {
+            "content-type": "multipart/form-data",
+            "authorization": "Bearer Mh1ZWFGBqHPe9M8fVJD20Nw2CoIIQLe_M7bnbMZ3nBnTa92KHKZjEm1eaByWnCWsuQYR4ZSo0jG11YctVk1q6mhAylw_PiHfhjzdytMULhdPn4zcz_hsdUqwZBGrWnYx"
+          }
+        }
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+        });
+    },
 };
 
 $(document.body).ready(function(){
