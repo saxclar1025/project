@@ -1,0 +1,35 @@
+body { 
+
+  background: url("assets/concert.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#header {
+	text-align: center;
+	background-color:transparent !important;
+}
+
+h1 {
+	font-family: cursive;
+	font-size: 30px;
+}
+
+p {
+	color: ivory;
+	font-family: cursive;
+	font-size: 20px;
+}
+
+.form-control {
+text-align: center;
+border: none;
+}
+
+#button {
+text-align: center;
+border: none;
+margin-left: 20%;
+}

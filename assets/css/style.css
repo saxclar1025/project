@@ -10,11 +10,13 @@ body {
 .card {
     margin: 30px auto 30px auto;
     width: 65%;
+    opacity: 50%;
 }
 
 .jumbotron {
     margin: 15px auto 30px auto;
     width: 85%;
+    opacity: 50%;
 }
 
 
