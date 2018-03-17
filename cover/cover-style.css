@@ -1,9 +1,9 @@
-* {
+ * {
     font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    background-image: url('../imgs/city.jpeg');
+    background-image: url("assets/concert.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
