@@ -9,12 +9,13 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-var Result = function(name, distance, info, rating, url){
+var Result = function(name, distance, info, rating, url, imgUrl){
     this.name = name;
     this.distance = distance;
     this.info = info;
     this.rating = rating;
     this.url = url;
+    this.imgUrl = imgUrl;
 };
 
 var appUI = {
@@ -32,11 +33,11 @@ var appUI = {
 
 };
 
-var yelpSearcher {
+var yelpSearcher = {
     //Look here for Yelp categories
     //https://www.yelp.com/developers/documentation/v3/all_category_list
-    category: null,
-    zip: null,
+    category: "",
+    zip: "",
     categories: [ "(active, All)",
                   "(food, All)",
                   "(tours, All)",
@@ -47,15 +48,26 @@ var yelpSearcher {
                   "(danceclubs, All)"
     ],
 
+    results: [],
+
     setCategory: function(categoryID) {
-        this.category = categories[categoryID];
+        this.category = this.categories[categoryID];
     },
 
     search: function() {
+        var thisObject = this;
+        var resultArray = [];
+
+        jQuery.ajaxPrefilter(function(options) {
+            if (options.crossDomain && jQuery.support.cors) {
+                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+            }
+        });
+
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "https://api.yelp.com/v3/businesses/search?categories=" + this.category + "&location=" + this.zip,
+          "url": "http://api.yelp.com/v3/businesses/search?categories=(active%2C%20All)&location=33331",
           "method": "GET",
           "headers": {
             "content-type": "multipart/form-data",
@@ -64,11 +76,24 @@ var yelpSearcher {
         }
 
         $.ajax(settings).done(function (response) {
-          console.log(response);
+          response.businesses.forEach(function(item){
+            resultArray.push(new Result(item.name,
+                                        item.categories.map(function(item){return item.title;}).join(", "),
+                                        item.distance / 1609.344,
+                                        item.rating,
+                                        item.url,
+                                        item.image_url));
+          });
         });
-    },
+
+        thisObject.results = resultArray;
+        return resultArray;
+    }
 };
 
 $(document.body).ready(function(){
-
+    yelpSearcher.zip = 33020;
+    yelpSearcher.setCategory(3);
+    yelpSearcher.search();
+    console.log(yelpSearcher.results);
 });
