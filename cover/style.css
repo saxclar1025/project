@@ -1,35 +1,47 @@
-body { 
-
-  background: url("assets/concert.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+ * {
+    font-family: 'Montserrat', sans-serif;
 }
 
-#header {
-	text-align: center;
-	background-color:transparent !important;
+body {
+    background-image: url("assets/concert.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.95;
 }
 
-h1 {
-	font-family: cursive;
-	font-size: 30px;
+.card {
+    margin: 30px auto 30px auto;
+    width: 65%;
+    opacity: 50%;
 }
 
-p {
-	color: ivory;
-	font-family: cursive;
-	font-size: 20px;
+.jumbotron {
+    margin: 15px auto 30px auto;
+    width: 85%;
+    opacity: 50%;
 }
 
-.form-control {
-text-align: center;
-border: none;
+
+form {
+    margin: auto;
 }
 
-#button {
-text-align: center;
-border: none;
-margin-left: 20%;
-}
+@media screen and (max-width:768) {
+    #submit-btn {
+        text-align: center;
+    }
+    .submit-div {
+        display: block;
+            text-align: center;
+        }
+    }
+
+    .container {
+        min-height: 100vh;
+    }
+
+    .hiddenE {
+        display: none;
+    }
