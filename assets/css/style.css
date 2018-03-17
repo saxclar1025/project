@@ -1,8 +1,12 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
     background-image: url('../imgs/city.jpeg');
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-size: cover;
     opacity: 0.95;
 }
@@ -24,3 +28,16 @@ form {
     margin: auto;
 }
 
+@media screen and (max-width:768) {
+    #submit-btn {
+        text-align: center;
+    }
+    .submit-div {
+        display: block;
+            text-align: center;
+        }
+    }
+
+    .container {
+        min-height: 100vh;
+    }

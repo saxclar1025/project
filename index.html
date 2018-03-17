@@ -16,6 +16,7 @@
         crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
 <body>
@@ -27,32 +28,43 @@
             <div id="search-div">
 
                 <div id="zip-div">
-                  <!--  <form class="form-control">
+                    <!--  <form class="form-control">
                         <input type="text" placeholder="Zip Code" pattern="[0-9]{5}" maxlength="5" />
                         <button type="submit">Submit</button>
                     </form> -->
                     <form>
-                            <div class="form-row align-items-center">
-                              <div class="col-md-4">
-                              
-                              </div>
-                              <div class="col-md-4">
-                                <div class="input-group mb-2">
-                                  <input type="text" class="form-control"placeholder="Zipcode" pattern="[0-9]{5}" maxlength="5">
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <button type="submit" class="btn btn-dark mb-2">Submit</button>
-                              </div>
+                        <div class="form-row align-items-center">
+                            <div class="col-md-4">
+
                             </div>
-                          </form>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" placeholder="Zipcode" pattern="[0-9]{5}" maxlength="5">
+                                </div>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </form>
+                    <div class="row align-items-center">
+                            <div class="col-md-4">
+
+                                </div>
+                        <div class="col-md-4 col-xs-12 text-center" id="submit-div">
+                            <button type="submit" class="btn btn-dark mb-2" id="submit-btn">Submit</button>
+                        </div>
+                        <div class="col-md-4">
+
+                            </div>
+                    </div>
+
+
                 </div>
                 <div id="category-div">
 
                 </div>
             </div>
             <div id="results-div">
-                <div class="result-div card">
+                <div class="result-div card text-center">
                     <div class="card-body">
                         <h2 class="name card-title">Name of result</h2>
                         <h4 class="distance card-subtitle">Distance to result</h4>
@@ -64,7 +76,7 @@
 
                     </div>
                 </div>
-                <div class="result-div card">
+                <div class="result-div card text-center">
                     <div class="card-body">
                         <h2 class="name card-title">Name of result</h2>
                         <h4 class="distance card-subtitle">Distance to result</h4>
@@ -76,7 +88,7 @@
 
                     </div>
                 </div>
-                <div class="result-div card">
+                <div class="result-div card text-center">
                     <div class="card-body">
                         <h2 class="name card-title">Name of result</h2>
                         <h4 class="distance card-subtitle">Distance to result</h4>
@@ -90,6 +102,11 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <div class="footer-bottom text-center bg-light col-xs-12">
+                <p>made by - FourHorsemen Dev Group </span>
+            </div>
+        </footer>
     </div>
 
 
