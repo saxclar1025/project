@@ -98,11 +98,14 @@ $(document.body).ready(function(){
     console.log(yelpSearcher.results);
 });
 
-var togggleResults = new Vue ({
+var vueInstance = new Vue ({
     el: '#app1',
     data:{
-        show: true,
-    }
+        show: false,
+        displayResults: function() {
+            vueInstance.show = !vueInstance.show;
+        }
+    },
 })
 
 var userZIP = $('#userZip').val();
