@@ -26,6 +26,7 @@
             <div class="jumbotron text-center bg-light">
                 <h1>Where's the Fun?</h1>
             </div>
+            <div id="app1">
             <div id="category-div">
                 <div class="row">
                     <div class="category-div card text-center col-md-3" id="category1">
@@ -34,7 +35,7 @@
 
                             <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             </p>
-                            <button type="button" class="btn btn-light" id="cat1">Select</button>
+                            <button type="button" class="btn btn-secondary" id="cat1" @click="displayResults">Select</button>
                         </div>
                     </div>
                     <div class="category-div card text-center col-md-3" id="category2">
@@ -43,7 +44,7 @@
 
                             <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             </p>
-                            <button type="button" class="btn btn-light" id="cat2">Select</button>
+                            <button type="button" class="btn btn-secondary" id="cat2" @click="displayResults">Select</button>
                         </div>
                     </div>
                     <div class="category-div card text-center col-md-3">
@@ -51,54 +52,54 @@
                             <h2 class="name card-title">Category 3</h2>
                             <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             </p>
-                            <button type="button" class="btn btn-light" id="cat3">Select</button>
+                            <button type="button" class="btn btn-secondary" id="cat3" @click="displayResults">Select</button>
                         </div>
                     </div>
-
 
                 </div>
 
             </div>
-            <div id="app1">
-                <div id="results-div">
-                    <div class="result-div card text-center">
-                        <div class="card-body">
-                            <h2 class="name card-title">Name of result</h2>
-                            <h4 class="distance card-subtitle">Distance to result</h4>
-                            <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum beatae corporis fugiat
-                                facilis, minima praesentium aperiam itaque blanditiis error molestias quis quasi eaque ea quod
-                                obcaecati quisquam.
-                            </p>
-                            <p class="rating">5 Stars</p>
-                            <a href="./results.html" class="btn btn-secondary">More Info</a>
+                <transition name="fade">
+                    <div id="results-div" v-if="show">
+                        <div class="result-div card text-center">
+                            <div class="card-body">
+                                <h2 class="name card-title">Name of result</h2>
+                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum beatae corporis
+                                    fugiat facilis, minima praesentium aperiam itaque blanditiis error molestias quis quasi
+                                    eaque ea quod obcaecati quisquam.
+                                </p>
+                                <p class="rating">5 Stars</p>
+                                <a href="./results.html" class="btn btn-secondary">More Info</a>
+                            </div>
+                        </div>
+                        <div class="result-div card text-center" v-if="show">
+                            <div class="card-body">
+                                <h2 class="name card-title">Name of result</h2>
+                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum beatae corporis
+                                    fugiat facilis, minima praesentium aperiam itaque blanditiis error molestias quis quasi
+                                    eaque ea quod obcaecati quisquam.
+                                </p>
+                                <p class="rating">5 Stars</p>
+                                <a href="./results.html" class="btn btn-secondary">More Info</a>
+
+                            </div>
+                        </div>
+                        <div class="result-div card text-center" v-if="show">
+                            <div class="card-body">
+                                <h2 class="name card-title">Name of result</h2>
+                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum beatae corporis
+                                    fugiat facilis, minima praesentium aperiam itaque blanditiis error molestias quis quasi
+                                    eaque ea quod obcaecati quisquam.
+                                </p>
+                                <p class="rating">5 Stars</p>
+                                <a href="./results.html" class="btn btn-secondary">More Info</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="result-div card text-center">
-                        <div class="card-body">
-                            <h2 class="name card-title">Name of result</h2>
-                            <h4 class="distance card-subtitle">Distance to result</h4>
-                            <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum beatae corporis fugiat
-                                facilis, minima praesentium aperiam itaque blanditiis error molestias quis quasi eaque ea quod
-                                obcaecati quisquam.
-                            </p>
-                            <p class="rating">5 Stars</p>
-                            <a href="./results.html" class="btn btn-secondary">More Info</a>
-    
-                        </div>
-                    </div>
-                    <div class="result-div card text-center">
-                        <div class="card-body">
-                            <h2 class="name card-title">Name of result</h2>
-                            <h4 class="distance card-subtitle">Distance to result</h4>
-                            <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum beatae corporis fugiat
-                                facilis, minima praesentium aperiam itaque blanditiis error molestias quis quasi eaque ea quod
-                                obcaecati quisquam.
-                            </p>
-                            <p class="rating">5 Stars</p>
-                            <a href="./results.html" class="btn btn-secondary">More Info</a>
-                        </div>
-                    </div>
-                </div>
+                </transition>
             </div>
         </div>
     </div>
@@ -110,8 +111,12 @@
     </div>
 
 
+<<<<<<< HEAD
 <script type="text/javascript" src="assets/javascript/app.js"></script>
 <script type="text/javascript" src="assets/javascript/app2.js"></script>
+=======
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+>>>>>>> c139534c358086dd0b6a2abbe35b1f5765c4bc4a
 </body>
 
 </html>
