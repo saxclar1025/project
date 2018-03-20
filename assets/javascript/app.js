@@ -97,3 +97,12 @@ $(document.body).ready(function(){
     yelpSearcher.search();
     console.log(yelpSearcher.results);
 });
+
+var togggleResults = new Vue ({
+    el: '#app1',
+    data:{
+        show: true,
+    }
+})
+
+var userZIP = $('#userZip').val();
