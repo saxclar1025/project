@@ -109,3 +109,10 @@ var vueInstance = new Vue ({
 })
 
 var userZIP = $('#userZip').val();
+
+
+jQuery(function(){
+    jQuery('#changeCategory').click(function(){
+        $(".category-div").show();
+    })
+});
