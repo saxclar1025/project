@@ -9,6 +9,12 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
+
 var Result = function(name, distance, info, rating, url, imgUrl){
     this.name = name;
     this.distance = distance;
@@ -45,6 +51,7 @@ var distanceBetween = function(zip1, zip2, callback){
      "authorization": "Bearer AIzaSyC4yiqbLh3IwdsjS_YCxHlpUodQcblsEHU"
    }
  }
+
  $.ajax(settings).done(function (response) {
    console.log(response);
    distance = response.rows[0].elements[0].distance.value / 1609.344;
@@ -63,7 +70,6 @@ var yelpSearcher = {
                   "(bars, All)",
                   "(karaoke, All)",
                   "(restaurants, All)",
-                  "(comedyclubs, US)",
                   "(danceclubs, All)"
     ],
 
@@ -76,12 +82,6 @@ var yelpSearcher = {
     search: function() {
         var thisObject = this;
         var resultArray = [];
-
-        jQuery.ajaxPrefilter(function(options) {
-            if (options.crossDomain && jQuery.support.cors) {
-                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
-            }
-        });
 
         var settings = {
           "async": true,
@@ -114,7 +114,6 @@ var seatGeekSearcher = {
     category: "",
     zip: "",
     categories: [ "Sports",
-                  "Concerts",
                   "Concert",
                   "Music Festivals",
                   "Theatre",
@@ -135,11 +134,12 @@ var seatGeekSearcher = {
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "https://api.seatgeek.com/2/events?geoip=" + thisObject.zip + "&range=25mi&taxonomies.name=" + thisObject.catagory + "&client_id=OTk5NTUwMXwxNTIxNTA3NzUzLjcz",
+          "url": "https://api.seatgeek.com/2/events?geoip=" + thisObject.zip + "&range=25mi&taxonomies.name=" + thisObject.category + "&client_id=OTk5NTUwMXwxNTIxNTA3NzUzLjcz",
           "method": "GET"
         }
 
         $.ajax(settings).done(function (response) {
+          console.log(response); 
           response.events.forEach(function(item){
             var newResult = new Result(item.title,
                                         item.taxonomies.map(
