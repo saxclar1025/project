@@ -9,6 +9,12 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
+
 var Result = function(name, distance, info, rating, url, imgUrl){
     this.name = name;
     this.distance = distance;
@@ -33,6 +39,26 @@ var appUI = {
 
 };
 
+var distanceBetween = function(zip1, zip2, callback){
+ var distance = -1;
+
+ var settings = {
+   "async": true,
+   "crossDomain": true,
+   "url": "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + zip1 + "&destinations=" + zip2 + "&units=imperial",
+   "method": "GET",
+   "headers": {
+     "authorization": "Bearer AIzaSyC4yiqbLh3IwdsjS_YCxHlpUodQcblsEHU"
+   }
+ }
+
+ $.ajax(settings).done(function (response) {
+   console.log(response);
+   distance = response.rows[0].elements[0].distance.value / 1609.344;
+   callback(distance);
+ });
+};
+
 var yelpSearcher = {
     //Look here for Yelp categories
     //https://www.yelp.com/developers/documentation/v3/all_category_list
@@ -44,7 +70,6 @@ var yelpSearcher = {
                   "(bars, All)",
                   "(karaoke, All)",
                   "(restaurants, All)",
-                  "(comedyclubs, US)",
                   "(danceclubs, All)"
     ],
 
@@ -57,12 +82,6 @@ var yelpSearcher = {
     search: function() {
         var thisObject = this;
         var resultArray = [];
-
-        jQuery.ajaxPrefilter(function(options) {
-            if (options.crossDomain && jQuery.support.cors) {
-                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
-            }
-        });
 
         var settings = {
           "async": true,
@@ -90,6 +109,61 @@ var yelpSearcher = {
         return resultArray;
     }
 };
+
+var seatGeekSearcher = {
+    category: "",
+    zip: "",
+    categories: [ "Sports",
+                  "Concert",
+                  "Music Festivals",
+                  "Theatre",
+                  "Comedy"
+    ],
+
+    results: [],
+
+    setCategory: function(categoryID) {
+        this.category = this.categories[categoryID];
+    },
+
+    search: function() {
+        var thisObject = this;
+        var resultArray = [];
+        
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.seatgeek.com/2/events?geoip=" + thisObject.zip + "&range=25mi&taxonomies.name=" + thisObject.category + "&client_id=OTk5NTUwMXwxNTIxNTA3NzUzLjcz",
+          "method": "GET"
+        }
+
+        $.ajax(settings).done(function (response) {
+          console.log(response); 
+          response.events.forEach(function(item){
+            var newResult = new Result(item.title,
+                                        item.taxonomies.map(
+                                          function(item){
+                                            var words = item.name.split("_");
+                                            words.forEach(function(word){
+                                              word = word.charAt(0).toUpperCase() + word.slice(1);  
+                                            });
+                                            return words.join(" ");
+                                          }).join(", "),
+                                        0,
+                                        item.score * 5,
+                                        item.url,
+                                        item.performers[0].image);
+            distanceBetween(thisObject.zip, item.venue.postal_code, function(distance){newResult.distance = distance;});
+            resultArray.push(newResult);
+          });
+        });
+
+        thisObject.results = resultArray;
+        return resultArray;
+    }
+};
+
 
 $(document.body).ready(function(){
     yelpSearcher.zip = 33020;
