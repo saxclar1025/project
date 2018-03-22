@@ -21,6 +21,7 @@ body {
     margin: 15px auto 30px auto;
     width: 85%;
     opacity: 50%;
+    max-height: 90px;
 }
 
 
