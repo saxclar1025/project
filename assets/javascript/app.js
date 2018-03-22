@@ -171,3 +171,15 @@ $(document.body).ready(function(){
     yelpSearcher.search();
     console.log(yelpSearcher.results);
 });
+
+var vueInstance = new Vue ({
+    el: '#app1',
+    data:{
+        show: false,
+        displayResults: function() {
+            vueInstance.show = !vueInstance.show;
+        }
+    },
+})
+
+var userZIP = $('#userZip').val();
