@@ -183,3 +183,12 @@ var vueInstance = new Vue ({
 })
 
 var userZIP = $('#userZip').val();
+
+jQuery(function(){
+    $('#right-btn').click(function(){
+        
+    });
+    $('#left-btn').click(function(){
+
+    });
+})
