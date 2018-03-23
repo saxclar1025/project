@@ -54,7 +54,8 @@ form {
         opacity: 0;
       }
 
-      .category-div {
-          height: 400px;
+    .carousel-inner {
+          height: 600px;
+          margin-bottom: 10px;
 
       }
