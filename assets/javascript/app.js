@@ -15,6 +15,9 @@ jQuery.ajaxPrefilter(function(options) {
     }
 });
 
+var zip = null;
+var results = [];
+
 var Result = function(name, distance, info, rating, url, imgUrl){
     this.name = name;
     this.distance = distance;
@@ -35,6 +38,18 @@ var appUI = {
         $(this.nthResultDivSelector(i)+" .distance").text(result.distance);
         $(this.nthResultDivSelector(i)+" .info").text(result.info);
         $(this.nthResultDivSelector(i)+" .rating").text(result.rating);
+    },
+
+    updateResultsGroup: function(i, results) {
+      for (var j = 0; j < 2; j++) {
+        if (results[i * 3 + j]){
+          this.updateResult(j,results[i * 3 + j]);
+          $(this.nthResultDivSelector()).show();
+        }
+        else {
+          $(this.nthResultDivSelector()).hide();
+        }
+      }
     }
 
 };
@@ -166,10 +181,9 @@ var seatGeekSearcher = {
 
 
 $(document.body).ready(function(){
-    yelpSearcher.zip = 33020;
-    yelpSearcher.setCategory(3);
-    yelpSearcher.search();
-    console.log(yelpSearcher.results);
+  zip = localStorage.getItem('zip');
+  yelpSearcher.zip = zip;
+  seatGeekSearcher.zip = zip;  
 });
 
 var vueInstance = new Vue ({
@@ -182,7 +196,13 @@ var vueInstance = new Vue ({
     },
 })
 
-var userZIP = $('#userZip').val();
+$('#submit-btn').click(function(){
+    zip = $('#userZIP').val();
+    localStorage.setItem('zip', zip);
+    database.ref('zip').push(zip);
+});
+
+
 
 jQuery(function(){
     $('#right-btn').click(function(){
@@ -192,3 +212,15 @@ jQuery(function(){
 
     });
 })
+
+$('.category').click(function(){
+  if (this.attr("searcher") === "yelp") {
+    yelpSearcher.setCategory(this.attr('categoryId'));
+    results = yelpSearcher.search();
+  }
+  if (this.attr("searcher") === "seatGeek") {
+    seatGeekSearcher.setCategory(this.attr('categoryId'));
+    results = seatGeekSearcher.search();
+  }
+  appUI.updateResultsGroup(0, results);
+});
