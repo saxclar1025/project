@@ -41,7 +41,7 @@ var appUI = {
     },
 
     updateResultsGroup: function(i, results) {
-      for (var j = 0; j < 2; j++) {
+      for (var j = 0; j < 3; j++) {
         if (results[i * 3 + j]){
           this.updateResult(j,results[i * 3 + j]);
           $(this.nthResultDivSelector(j)).show();
@@ -51,7 +51,6 @@ var appUI = {
         }
       }
     }
-
 };
 
 var distanceBetween = function(zip1, zip2, callback){

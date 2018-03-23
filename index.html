@@ -47,6 +47,7 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active" id="food" searcher="yelp" categoryId=5>
@@ -65,7 +66,7 @@
                                 <span class="text-center">
                                     <h2>Clubs</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/nightlife.jpeg" alt="Third slide" @click="displayResults" searcher="yelp" categoryId=6>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/night-clubs.jpeg" alt="Third slide" @click="displayResults" searcher="yelp" categoryId=6>
                             </div>
                             <div class="carousel-item" id="sports" searcher="seatGeek" categoryId=0>
                                 <span class="text-center">
@@ -90,6 +91,12 @@
                                     <h2>City Tours</h2>
                                 </span>
                                 <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/tours.jpeg" alt="Seventh slide" @click="displayResults" searcher="yelp" categoryId=2>
+                            </div>
+                            <div class="carousel-item" id="concerts" searcher="seatGeek" categoryId=1>
+                                <span class="text-center">
+                                    <h2>Concerts</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/concerts.jpeg" alt="Eighth slide" @click="displayResults" searcher="seatGeek" categoryId=1>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" @click="displayResults" searcher="yelp" categoryId=2>
