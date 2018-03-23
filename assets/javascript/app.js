@@ -44,10 +44,10 @@ var appUI = {
       for (var j = 0; j < 2; j++) {
         if (results[i * 3 + j]){
           this.updateResult(j,results[i * 3 + j]);
-          $(this.nthResultDivSelector()).show();
+          $(this.nthResultDivSelector(j)).show();
         }
         else {
-          $(this.nthResultDivSelector()).hide();
+          $(this.nthResultDivSelector(j)).hide();
         }
       }
     }
@@ -213,13 +213,13 @@ jQuery(function(){
     });
 })
 
-$('.category').click(function(){
-  if (this.attr("searcher") === "yelp") {
-    yelpSearcher.setCategory(this.attr('categoryId'));
+$('.img-cat').click(function(){
+  if ($(this).attr("searcher") === "yelp") {
+    yelpSearcher.setCategory($(this).attr('categoryId'));
     results = yelpSearcher.search();
   }
-  if (this.attr("searcher") === "seatGeek") {
-    seatGeekSearcher.setCategory(this.attr('categoryId'));
+  if ($(this).attr("searcher") === "seatGeek") {
+    seatGeekSearcher.setCategory($(this).attr('categoryId'));
     results = seatGeekSearcher.search();
   }
   appUI.updateResultsGroup(0, results);
