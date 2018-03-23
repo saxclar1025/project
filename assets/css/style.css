@@ -8,7 +8,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    opacity: 0.95;
+    opacity: 1;
 }
 
 .card {
@@ -18,10 +18,10 @@ body {
 }
 
 .jumbotron {
-    margin: 15px auto 30px auto;
+    margin: 5px auto 30px auto;
     width: 85%;
     opacity: 50%;
-    max-height: 90px;
+    max-height: 75px;
 }
 
 
@@ -59,3 +59,13 @@ form {
           margin-bottom: 10px;
 
       }
+
+     .carousel-inner {
+         height: 600px;
+     }
+
+     .title-container {
+         max-height: 200px;
+         margin-top: -30px;
+         margin-bottom: -50px;
+     }

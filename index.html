@@ -29,8 +29,9 @@
 <body>
     <div class="container-fluid">
         <div class="container">
-            <div class="jumbotron text-center bg-light">
-                <h1>Where's the Fun?</h1>
+            <div class="title-container">
+               
+                    <img class="img-fluid rounded mx-auto d-block" src="assets/imgs/log.png">
             </div>
             <div id="app1">
                 <div id="category-div">
@@ -49,19 +50,19 @@
                                 <span class="text-center">
                                     <h2>Food</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/food2.jpeg" alt="First slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid" src="assets/imgs/food2.jpeg" alt="First slide" @click="displayResults">
                             </div>
                             <div class="carousel-item" id="active" searcher="yelp" categoryId=0>
                                 <span class="text-center">
                                     <h2>Active</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/active.jpeg" alt="Second slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid" src="assets/imgs/active.jpeg" alt="Second slide" @click="displayResults">
                             </div>
                             <div class="carousel-item" id="dance-clubs" searcher="yelp" categoryId=6>
                                 <span class="text-center">
                                     <h2>Clubs</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/nightlife.jpeg" alt="Third slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid" src="assets/imgs/nightlife.jpeg" alt="Third slide" @click="displayResults">
                             </div>
                             <div class="carousel-item" id="sports" searcher="seatGeek" categoryId=0>
                                 <span class="text-center">
@@ -73,19 +74,19 @@
                                 <span class="text-center">
                                     <h2>Theatre</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/theater.jpeg" alt="fifth slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid" src="assets/imgs/theater.jpeg" alt="fifth slide" @click="displayResults">
                             </div>
                             <div class="carousel-item" id="comedy" searcher="seatGeek" categoryId=4>
                                 <span class="text-center">
                                     <h2>Comedy</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/comedy2.jpg" alt="Sixth slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid" src="assets/imgs/comedy2.jpg" alt="Sixth slide" @click="displayResults">
                             </div>
                             <div class="carousel-item" id="tours" searcher="yelp" categoryId=2>
                                 <span class="text-center">
                                     <h2>City Tours</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/tours.jpeg" alt="Seventh slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid" src="assets/imgs/tours.jpeg" alt="Seventh slide" @click="displayResults">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" @click="displayResults">
@@ -99,84 +100,84 @@
                     </div>
                 </div>
 
-          
-            <transition name="fade">
-                <div class="screen">
-                    <div class="slider">
-                        <div id="results-div" v-if="show">
-                            <div class="row">
-                                <div class="col-md-2">
 
-                                </div>
-                                <div class="col-md-8">
+                <transition name="fade">
+                    <div class="screen">
+                        <div class="slider">
+                            <div id="results-div" v-if="show">
+                                <div class="row">
+                                    <div class="col-md-2">
 
-                                    <div class="result-div card text-center">
-                                        <div class="card-body">
-                                            <h2 class="name card-title">Name of result</h2>
-                                            <h4 class="distance card-subtitle">Distance to result</h4>
-                                            <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum
-                                                beatae corporis fugiat facilis, minima praesentium aperiam itaque blanditiis
-                                                error molestias quis quasi eaque ea quod obcaecati quisquam.
-                                            </p>
-                                            <p class="rating">5 Stars</p>
-                                            <a href="./results.html" class="btn btn-secondary">More Info</a>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                        <div class="result-div card text-center" id="result1">
+                                            <div class="card-body">
+                                                <h2 class="name card-title">Name of result</h2>
+                                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet
+                                                    eum beatae corporis fugiat facilis, minima praesentium aperiam itaque
+                                                    blanditiis error molestias quis quasi eaque ea quod obcaecati quisquam.
+                                                </p>
+                                                <p class="rating">5 Stars</p>
+                                                <a href="./results.html" class="btn btn-secondary">More Info</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
+                                    <div class="col-md-2">
+
+                                    </div>
 
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-2">
 
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="result-div card text-center" v-if="show" id="result2">
+                                            <div class="card-body">
+                                                <h2 class="name card-title">Name of result</h2>
+                                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet
+                                                    eum beatae corporis fugiat facilis, minima praesentium aperiam itaque
+                                                    blanditiis error molestias quis quasi eaque ea quod obcaecati quisquam.
+                                                </p>
+                                                <p class="rating">5 Stars</p>
+                                                <a href="./results.html" class="btn btn-secondary">More Info</a>
 
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="result-div card text-center" v-if="show">
-                                        <div class="card-body">
-                                            <h2 class="name card-title">Name of result</h2>
-                                            <h4 class="distance card-subtitle">Distance to result</h4>
-                                            <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum
-                                                beatae corporis fugiat facilis, minima praesentium aperiam itaque blanditiis
-                                                error molestias quis quasi eaque ea quod obcaecati quisquam.
-                                            </p>
-                                            <p class="rating">5 Stars</p>
-                                            <a href="./results.html" class="btn btn-secondary">More Info</a>
-
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
+                                    <div class="col-md-2">
 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <div class="result-div card text-center" v-if="show">
-                                        <div class="card-body">
-                                            <h2 class="name card-title">Name of result</h2>
-                                            <h4 class="distance card-subtitle">Distance to result</h4>
-                                            <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet eum
-                                                beatae corporis fugiat facilis, minima praesentium aperiam itaque blanditiis
-                                                error molestias quis quasi eaque ea quod obcaecati quisquam.
-                                            </p>
-                                            <p class="rating">5 Stars</p>
-                                            <a href="./results.html" class="btn btn-secondary">More Info</a>
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"></div>
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                        <div class="result-div card text-center" v-if="show" id="result3">
+                                            <div class="card-body">
+                                                <h2 class="name card-title">Name of result</h2>
+                                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet
+                                                    eum beatae corporis fugiat facilis, minima praesentium aperiam itaque
+                                                    blanditiis error molestias quis quasi eaque ea quod obcaecati quisquam.
+                                                </p>
+                                                <p class="rating">5 Stars</p>
+                                                <a href="./results.html" class="btn btn-secondary">More Info</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
 
+                                </div>
                             </div>
+
                         </div>
-
                     </div>
-                </div>
 
-            </transition>
-        </div>
+                </transition>
+            </div>
         </div>
     </div>
     </div>
