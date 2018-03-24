@@ -40,6 +40,7 @@ var appUI = {
         $(this.nthResultDivSelector(i)+" .distance").text(result.distance.toFixed(1) + " Miles away");
         $(this.nthResultDivSelector(i)+" .info").text(result.info);
         $(this.nthResultDivSelector(i)+" .rating").text(result.rating.toFixed(1) + " Stars");
+        $(this.nthResultDivSelector(i)+" .info-btn").attr("href", result.url);
     },
 
     updateResultsGroup: function(i, results) {
