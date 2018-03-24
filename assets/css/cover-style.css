@@ -1,0 +1,47 @@
+ * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-image: url("../imgs/concert.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.95;
+}
+
+.card {
+    margin: 30px auto 30px auto;
+    width: 65%;
+    opacity: 50%;
+}
+
+.jumbotron {
+    margin: 15px auto 30px auto;
+    width: 85%;
+    opacity: 50%;
+}
+
+
+form {
+    margin: auto;
+}
+
+@media screen and (max-width:768) {
+    #submit-btn {
+        text-align: center;
+    }
+    .submit-div {
+        display: block;
+            text-align: center;
+        }
+    }
+
+    .container {
+        min-height: 100vh;
+    }
+
+    .hiddenE {
+        display: none;
+    }
