@@ -17,6 +17,7 @@ jQuery.ajaxPrefilter(function(options) {
 
 var zip = null;
 var results = [];
+var currentResult = null;
 
 var Result = function(name, distance, info, rating, url, imgUrl){
     this.name = name;
@@ -29,15 +30,17 @@ var Result = function(name, distance, info, rating, url, imgUrl){
 
 var appUI = {
     nthResultDivSelector: function(i) {
-        return "#results-div div:nth-child(" + (i + 1) + ")";
+        // return "#results-div div:nth-child(" + (i + 1) + ")";
+        return "#result" + (i + 1);
     },
 
     //i is index from 0 (left) to 2 (right)
     updateResult: function(i, result) {
         $(this.nthResultDivSelector(i)+" .name").text(result.name);
-        $(this.nthResultDivSelector(i)+" .distance").text(result.distance);
+        $(this.nthResultDivSelector(i)+" .distance").text(result.distance.toFixed(1) + " Miles away");
         $(this.nthResultDivSelector(i)+" .info").text(result.info);
-        $(this.nthResultDivSelector(i)+" .rating").text(result.rating);
+        $(this.nthResultDivSelector(i)+" .rating").text(result.rating.toFixed(1) + " Stars");
+        $(this.nthResultDivSelector(i)+" .info-btn").attr("href", result.url);
     },
 
     updateResultsGroup: function(i, results) {
@@ -50,6 +53,14 @@ var appUI = {
           $(this.nthResultDivSelector(j)).hide();
         }
       }
+    },
+
+    updateMoreInfo: function() {
+      $(".more-info #result-img").attr("src", currentResult.imgUrl);
+      $(".more-info .name").text(currentResult.name);
+      $(".more-info .distance").text(currentResult.distance.toFixed(1) + " Miles away");
+      $(".more-info .info").text(currentResult.info);
+      $(".more-info .rating").text(currentResult.rating.toFixed(1) + " Stars");
     }
 };
 
@@ -67,9 +78,9 @@ var distanceBetween = function(zip1, zip2, callback){
  }
 
  $.ajax(settings).done(function (response) {
-   console.log(response);
    distance = response.rows[0].elements[0].distance.value / 1609.344;
    callback(distance);
+   appUI.updateResultsGroup(0,results);
  });
 };
 
@@ -78,16 +89,16 @@ var yelpSearcher = {
     //https://www.yelp.com/developers/documentation/v3/all_category_list
     category: "",
     zip: "",
-    categories: [ "(active, All)",
-                  "(food, All)",
-                  "(tours, All)",
-                  "(bars, All)",
-                  "(karaoke, All)",
-                  "(restaurants, All)",
-                  "(danceclubs, All)"
+    categories: [ "active",
+                  "food",
+                  "tours",
+                  "bars",
+                  "karaoke",
+                  "restaurants",
+                  "danceclubs"
     ],
 
-    results: [],
+    // results: [],
 
     setCategory: function(categoryID) {
         this.category = this.categories[categoryID];
@@ -100,7 +111,7 @@ var yelpSearcher = {
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "http://api.yelp.com/v3/businesses/search?categories=(active%2C%20All)&location=33331",
+          "url": "http://api.yelp.com/v3/businesses/search?categories=" + thisObject.category + "&location=" + thisObject.zip,
           "method": "GET",
           "headers": {
             "content-type": "multipart/form-data",
@@ -111,16 +122,15 @@ var yelpSearcher = {
         $.ajax(settings).done(function (response) {
           response.businesses.forEach(function(item){
             resultArray.push(new Result(item.name,
-                                        item.categories.map(function(item){return item.title;}).join(", "),
                                         item.distance / 1609.344,
+                                        item.categories.map(function(item){return item.title;}).join(", "),
                                         item.rating,
                                         item.url,
                                         item.image_url));
           });
+          results = resultArray;
+          appUI.updateResultsGroup(0, results);
         });
-
-        thisObject.results = resultArray;
-        return resultArray;
     }
 };
 
@@ -134,7 +144,7 @@ var seatGeekSearcher = {
                   "Comedy"
     ],
 
-    results: [],
+    // results: [],
 
     setCategory: function(categoryID) {
         this.category = this.categories[categoryID];
@@ -153,9 +163,9 @@ var seatGeekSearcher = {
         }
 
         $.ajax(settings).done(function (response) {
-          console.log(response); 
           response.events.forEach(function(item){
-            var newResult = new Result(item.title,
+            var newResult = new Result( item.title,
+                                        0,
                                         item.taxonomies.map(
                                           function(item){
                                             var words = item.name.split("_");
@@ -164,17 +174,15 @@ var seatGeekSearcher = {
                                             });
                                             return words.join(" ");
                                           }).join(", "),
-                                        0,
                                         item.score * 5,
                                         item.url,
                                         item.performers[0].image);
             distanceBetween(thisObject.zip, item.venue.postal_code, function(distance){newResult.distance = distance;});
             resultArray.push(newResult);
           });
+          results = resultArray;
+          appUI.updateResultsGroup(0, results);
         });
-
-        thisObject.results = resultArray;
-        return resultArray;
     }
 };
 
@@ -182,18 +190,21 @@ var seatGeekSearcher = {
 $(document.body).ready(function(){
   zip = localStorage.getItem('zip');
   yelpSearcher.zip = zip;
-  seatGeekSearcher.zip = zip;  
+  seatGeekSearcher.zip = zip;
+  appUI.updateResultsGroup(0,results);
+  currentResult = localStorage.getItem("result");
+  appUI.updateMoreInfo();
 });
 
-var vueInstance = new Vue ({
-    el: '#app1',
-    data:{
-        show: false,
-        displayResults: function() {
-            vueInstance.show = !vueInstance.show;
-        }
-    },
-})
+// var vueInstance = new Vue ({
+//     el: '#app1',
+//     data:{
+//         show: false,
+//         displayResults: function() {
+//             vueInstance.show = !vueInstance.show;
+//         }
+//     },
+// })
 
 $('#submit-btn').click(function(){
     zip = $('#userZIP').val();
@@ -201,7 +212,13 @@ $('#submit-btn').click(function(){
     database.ref('zip').push(zip);
 });
 
-
+$("form").on("submit", function(){
+  event.preventDefault();
+  zip = $('#userZIP').val();
+  localStorage.setItem('zip', zip);
+  database.ref('zip').push(zip);
+  window.location.href = 'search.html';
+});
 
 jQuery(function(){
     $('#right-btn').click(function(){
@@ -215,11 +232,14 @@ jQuery(function(){
 $('.img-cat').click(function(){
   if ($(this).attr("searcher") === "yelp") {
     yelpSearcher.setCategory($(this).attr('categoryId'));
-    results = yelpSearcher.search();
+    yelpSearcher.search();
   }
   if ($(this).attr("searcher") === "seatGeek") {
     seatGeekSearcher.setCategory($(this).attr('categoryId'));
-    results = seatGeekSearcher.search();
+    seatGeekSearcher.search();
   }
-  appUI.updateResultsGroup(0, results);
+});
+
+$(".info-btn").click(function(){
+  localStorage.setItem("result", results[$(this).attr("resultID")]);
 });

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Where's The Fun???</title>
+    <link rel="icon" href="assets/imgs/icon.png">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/regular.js" integrity="sha384-t7yHmUlwFrLxHXNLstawVRBMeSLcXTbQ5hsd0ifzwGtN7ZF7RZ8ppM7Ldinuoiif"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="title-container">
+               
+                    <img class="img-fluid rounded mx-auto d-block" src="assets/imgs/log.png">
+            </div>
+            <div id="app1">
+                <div id="category-div">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-keyboard=true>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" id="food" searcher="yelp" categoryId=5>
+                                <span class="text-center">
+                                    <h2>Food</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/food2.jpeg" alt="First slide" @click="displayResults"id="food" searcher="yelp" categoryId=5> 
+                            </div>
+                            <div class="carousel-item" id="active" searcher="yelp" categoryId=0>
+                                <span class="text-center">
+                                    <h2>Active</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/active.jpeg" alt="Second slide" @click="displayResults" searcher="yelp" categoryId=0>
+                            </div>
+                            <div class="carousel-item" id="dance-clubs" searcher="yelp" categoryId=6>
+                                <span class="text-center">
+                                    <h2>Clubs</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/dance-clubs.jpg" alt="Third slide" @click="displayResults" searcher="yelp" categoryId=6>
+                            </div>
+                            <div class="carousel-item" id="sports" searcher="seatGeek" categoryId=0>
+                                <span class="text-center">
+                                    <h2>Sports</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/tennis.jpeg" alt="Forth slide" @click="displayResults" searcher="seatGeek" categoryId=0>
+                            </div>
+                            <div class="carousel-item" id="theater" searcher="seatGeek" categoryId=3>
+                                <span class="text-center">
+                                    <h2>Theatre</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/theater.jpeg" alt="fifth slide" @click="displayResults"  searcher="seatGeek" categoryId=3>
+                            </div>
+                            <div class="carousel-item" id="comedy" searcher="seatGeek" categoryId=4>
+                                <span class="text-center">
+                                    <h2>Comedy</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/comedy2.jpg" alt="Sixth slide" @click="displayResults"  searcher="seatGeek" categoryId=4>
+                            </div>
+                            <div class="carousel-item" id="tours" searcher="yelp" categoryId=2>
+                                <span class="text-center">
+                                    <h2>City Tours</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/tours.jpeg" alt="Seventh slide" @click="displayResults" searcher="yelp" categoryId=2>
+                            </div>
+                            <div class="carousel-item" id="concerts" searcher="seatGeek" categoryId=1>
+                                <span class="text-center">
+                                    <h2>Concerts</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/concerts.jpeg" alt="Eighth slide" @click="displayResults" searcher="seatGeek" categoryId=1>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" @click="displayResults" searcher="yelp" categoryId=2>
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <transition name="fade">
+                    <div class="screen">
+                        <div class="slider">
+                            <div id="results-div" v-if="show">
+                                <div class="row">
+                                    <div class="col-md-2">
+
+                                    </div>
+                                    <div class="col-md-8">
+
+                                        <div class="result-div card text-center" id="result1">
+                                            <div class="card-body">
+                                                <h2 class="name card-title">Name of result</h2>
+                                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet
+                                                    eum beatae corporis fugiat facilis, minima praesentium aperiam itaque
+                                                    blanditiis error molestias quis quasi eaque ea quod obcaecati quisquam.
+                                                </p>
+                                                <p class="rating">5 Stars</p>
+                                                <a href="./results.html" class="btn btn-secondary info-btn" resultID=0>More Info</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="result-div card text-center" v-if="show" id="result2">
+                                            <div class="card-body">
+                                                <h2 class="name card-title">Name of result</h2>
+                                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet
+                                                    eum beatae corporis fugiat facilis, minima praesentium aperiam itaque
+                                                    blanditiis error molestias quis quasi eaque ea quod obcaecati quisquam.
+                                                </p>
+                                                <p class="rating">5 Stars</p>
+                                                <a href="./results.html" class="btn btn-secondary info-btn" resultID=1>More Info</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                        <div class="result-div card text-center" v-if="show" id="result3">
+                                            <div class="card-body">
+                                                <h2 class="name card-title">Name of result</h2>
+                                                <h4 class="distance card-subtitle">Distance to result</h4>
+                                                <p class="info card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fugit amet
+                                                    eum beatae corporis fugiat facilis, minima praesentium aperiam itaque
+                                                    blanditiis error molestias quis quasi eaque ea quod obcaecati quisquam.
+                                                </p>
+                                                <p class="rating">5 Stars</p>
+                                                <a href="./results.html" class="btn btn-secondary info-btn" resultID=2>More Info</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </transition>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer>
+        <div class="footer-bottom text-center bg-light col-xs-12">
+            <p>made by - FourHorsemen Dev Group </span>
+        </div>
+    </footer>
+    </div>
+
+
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/app2.js"></script>
+</body>
+
+</html>
