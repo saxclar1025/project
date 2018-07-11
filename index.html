@@ -2,6 +2,9 @@
 <html>
 
 <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Where's The Fun???</title>
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -44,52 +47,59 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active" id="food" searcher="yelp" categoryId=5>
                                 <span class="text-center">
                                     <h2>Food</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid" src="assets/imgs/food2.jpeg" alt="First slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/food2.jpeg" alt="First slide" @click="displayResults"id="food" searcher="yelp" categoryId=5> 
                             </div>
                             <div class="carousel-item" id="active" searcher="yelp" categoryId=0>
                                 <span class="text-center">
                                     <h2>Active</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid" src="assets/imgs/active.jpeg" alt="Second slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/active.jpeg" alt="Second slide" @click="displayResults" searcher="yelp" categoryId=0>
                             </div>
                             <div class="carousel-item" id="dance-clubs" searcher="yelp" categoryId=6>
                                 <span class="text-center">
                                     <h2>Clubs</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid" src="assets/imgs/nightlife.jpeg" alt="Third slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/night-clubs.jpeg" alt="Third slide" @click="displayResults" searcher="yelp" categoryId=6>
                             </div>
                             <div class="carousel-item" id="sports" searcher="seatGeek" categoryId=0>
                                 <span class="text-center">
                                     <h2>Sports</h2>
                                 </span>
-                                <img class="d-block w-100" src="assets/imgs/tennis.jpeg" alt="Forth slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/tennis.jpeg" alt="Forth slide" @click="displayResults" searcher="seatGeek" categoryId=0>
                             </div>
                             <div class="carousel-item" id="theater" searcher="seatGeek" categoryId=3>
                                 <span class="text-center">
                                     <h2>Theatre</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid" src="assets/imgs/theater.jpeg" alt="fifth slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/theater.jpeg" alt="fifth slide" @click="displayResults"  searcher="seatGeek" categoryId=3>
                             </div>
                             <div class="carousel-item" id="comedy" searcher="seatGeek" categoryId=4>
                                 <span class="text-center">
                                     <h2>Comedy</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid" src="assets/imgs/comedy2.jpg" alt="Sixth slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/comedy2.jpg" alt="Sixth slide" @click="displayResults"  searcher="seatGeek" categoryId=4>
                             </div>
                             <div class="carousel-item" id="tours" searcher="yelp" categoryId=2>
                                 <span class="text-center">
                                     <h2>City Tours</h2>
                                 </span>
-                                <img class="d-block w-100 img-fluid" src="assets/imgs/tours.jpeg" alt="Seventh slide" @click="displayResults">
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/tours.jpeg" alt="Seventh slide" @click="displayResults" searcher="yelp" categoryId=2>
+                            </div>
+                            <div class="carousel-item" id="concerts" searcher="seatGeek" categoryId=1>
+                                <span class="text-center">
+                                    <h2>Concerts</h2>
+                                </span>
+                                <img class="d-block w-100 img-fluid img-cat" src="assets/imgs/concerts.jpeg" alt="Eighth slide" @click="displayResults" searcher="seatGeek" categoryId=1>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" @click="displayResults">
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" @click="displayResults" searcher="yelp" categoryId=2>
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
